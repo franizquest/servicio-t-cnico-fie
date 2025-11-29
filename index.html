@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicio Técnico FIE – Electromedicina</title>
+  <meta name="description" content="Servicio Técnico FIE. Servicio técnico independiente especializado en bombas de infusión B. Braun Space e calentadores de fluidos Solventum Ranger 245 y 247.">
+  <style>
+    :root {
+      --verde-principal: #009688;
+      --verde-oscuro: #006f63;
+      --gris-fondo: #f4f7f9;
+      --gris-texto: #333333;
+      --blanco: #ffffff;
+      --sombra: 0 4px 12px rgba(0,0,0,0.08);
+      --radio: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--gris-fondo);
+      color: var(--gris-texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+      color: var(--blanco);
+      padding: 1.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: var(--sombra);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--blanco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--verde-oscuro);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 2.5rem 0 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.8rem;
+      color: #123036;
+    }
+
+    .hero h1 span {
+      color: var(--verde-oscuro);
+    }
+
+    .hero p {
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: #e0f4f1;
+      color: var(--verde-oscuro);
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .btn-primary:hover {
+      background: #00554a;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--verde-oscuro);
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .btn-outline:hover {
+      background: #e0f4f1;
+    }
+
+    .hero-panel {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      padding: 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-panel h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      color: #123036;
+    }
+
+    .hero-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .hero-panel li::before {
+      content: "•";
+      color: var(--verde-oscuro);
+      font-weight: bold;
+      display: inline-block;
+      width: 1rem;
+      margin-left: -1rem;
+    }
+
+    .hero-panel li {
+      margin-left: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    section {
+      padding: 2rem 0;
+    }
+
+    h2.section-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #123036;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      padding: 1.1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+      color: #123036;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0f4f1;
+      color: var(--verde-oscuro);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .list-clean {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list-clean li {
+      margin-bottom: 0.25rem;
+    }
+
+    .brands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .brands span {
+      background: var(--blanco);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      box-shadow: var(--sombra);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: flex-start;
+    }
+
+    .contact-box {
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+      border-radius: var(--radio);
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #123036;
+      color: #c8d5d9;
+      padding: 1.5rem 0;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #e0f4f1;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid, .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        position: static;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        padding-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon">FIE</div>
+        <div>
+          <div>Servicio Técnico FIE</div>
+          <small>Electromedicina · B. Braun · Solventum</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#marcas">Marcas</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-tag">Servicio técnico independiente en electromedicina</div>
+        <h1>
+          Mantenimiento y reparación de <span>bombas de infusión</span> y
+          <span>calentadores de fluidos</span>.
+        </h1>
+        <p>
+          Servicio Técnico FIE está especializado en la línea Space® de B. Braun
+          (Infusomat®, Perfusor®, SpaceStation®, Cover Comfort®) y en los calentadores
+          de fluidos Ranger™ 245 y 247 de Solventum.
+        </p>
+        <p>
+          Trabajo siguiendo los procedimientos oficiales de los fabricantes, con
+          instrumental certificado y trazabilidad completa de cada intervención.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn btn-primary">Contactar</a>
+          <a href="#servicios" class="btn btn-outline">Ver servicios técnicos</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <h2>Servicio técnico para</h2>
+        <ul>
+          <li>Hospitales públicos y privados</li>
+          <li>Clínicas y centros médico-quirúrgicos</li>
+          <li>Centros sociosanitarios y residencias</li>
+          <li>Empresas de transporte sanitario</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <section id="servicios">
+    <div class="container">
+      <h2 class="section-title">Servicios técnicos especializados</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge">Bombas de infusión y perfusión</div>
+          <h3>Línea Space® – B. Braun</h3>
+          <p>
+            Reparación, mantenimiento y verificación funcional de bombas Infusomat®,
+            Perfusor®, SpaceStation® y Cover Comfort®.
+          </p>
+          <ul class="list-clean">
+            <li>Diagnóstico y sustitución de componentes</li>
+            <li>Pruebas de caudal, presión y alarmas</li>
+            <li>Verificación con analizador ESA620</li>
+            <li>Desinfección previa a la intervención</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge">Calentadores de fluidos</div>
+          <h3>Ranger™ 245 · 247 – Solventum</h3>
+          <p>
+            Revisión completa de calentadores de fluidos de la gama Patient Warming:
+            Ranger™ 245 y Ranger™ 247.
+          </p>
+          <ul class="list-clean">
+            <li>Comprobación de temperatura y estabilidad</li>
+            <li>Revisión de alarmas y seguridad</li>
+            <li>Control de fugas y conexiones</li>
+            <li>Ensayos eléctricos según IEC 60601 / 62353</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="badge">Trazabilidad y documentación</div>
+          <h3>Informes técnicos y plataformas oficiales</h3>
+          <p>
+            Todas las intervenciones se documentan en las plataformas de B. Braun y
+            Solventum, además de generar un informe en PDF para el centro sanitario.
+          </p>
+          <ul class="list-clean">
+            <li>Registro de número de serie y lote</li>
+            <li>Pruebas realizadas y resultados</li>
+            <li>Repuestos utilizados</li>
+            <li>Histórico de intervenciones por equipo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marcas">
+    <div class="container">
+      <h2 class="section-title">Marcas y gamas con las que trabajo</h2>
+      <p style="margin-bottom: .8rem; font-size: .9rem;">
+        El Servicio Técnico FIE se centra en gamas concretas de alto uso hospitalario,
+        lo que permite ofrecer un servicio muy especializado.
+      </p>
+      <div class="brands">
+        <span>B. Braun – Línea Space®</span>
+        <span>Infusomat®</span>
+        <span>Perfusor®</span>
+        <span>SpaceStation®</span>
+        <span>Cover Comfort®</span>
+        <span>Solventum – Ranger™ 245</span>
+        <span>Solventum – Ranger™ 247</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi">
+    <div class="container about-grid">
+      <div>
+        <h2 class="section-title">Sobre mí</h2>
+        <p style="margin-bottom:.6rem; font-size:.95rem;">
+          Soy técnico en electromedicina con experiencia previa en Agenor Mantenimientos,
+          donde he trabajado con equipos de B. Braun y Solventum realizando reparaciones,
+          verificaciones y calibraciones de sus dispositivos.
+        </p>
+        <p style="margin-bottom:.6rem; font-size:.95rem;">
+          El objetivo del Servicio Técnico FIE es ofrecer un soporte técnico fiable,
+          documentado y cercano, especialmente para centros ubicados en zonas con menor
+          disponibilidad de servicios técnicos especializados.
+        </p>
+        <p style="font-size:.95rem;">
+          Trabajo con instrumental certificado y procedimientos alineados con las
+          normativas IEC 60601 e IEC 62353, priorizando siempre la seguridad del paciente
+          y la continuidad asistencial.
+        </p>
+      </div>
+      <div class="contact-box" id="contacto">
+        <h2 style="font-size:1.1rem; margin-bottom:.4rem;">Contacto</h2>
+        <p style="font-size:.9rem; margin-bottom:.4rem;">
+          Si necesitas información sobre el servicio técnico o tienes un equipo que
+          requiere revisión, puedes contactar a través de:
+        </p>
+        <ul class="list-clean">
+          <li><strong>Correo:</strong> <em>(aquí pondrías tu correo)</em></li>
+          <li><strong>Ubicación del taller:</strong> Molina de Aragón (Guadalajara)</li>
+          <li><strong>Horario:</strong> Lunes a viernes, 9:00–18:00</li>
+        </ul>
+        <p style="margin-top:.5rem; font-size:.85rem;">
+          La logística de entrada y salida de equipos se realiza mediante MRW, según los
+          procedimientos acordados con los fabricantes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>
+        © <span id="year"></span> Servicio Técnico FIE · Especialista en bombas de infusión
+        B. Braun Space y calentadores de fluidos Solventum Ranger™.
+      </p>
+      <p>
+        Este sitio web se utiliza como apoyo al proyecto de Servicio Técnico FIE para el
+        Ciclo Formativo de Grado Superior en Gestión de Ventas y Espacios Comerciales.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
